@@ -17,3 +17,24 @@ p {
 p.hidden {
   display: none;
 }
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.hidden {
+  display: none;
+}
+.modal-content {
+  background-color: white;
+  margin: 20% auto;
+  width: 50%;
+  -webkit-box-shadow: 7px 7px 56px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 7px 56px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 7px 56px 0px rgba(0, 0, 0, 0.75);
+}
