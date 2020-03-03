@@ -10,9 +10,9 @@ class Modal extends React.Component {
     const { title, info, toggle } = this.props;
     return (
       <div className='modal-content '>
-        <div className='modal-tilte'>
+        <div className='modal-title'>
           {title}
-          <span className='close-button' onClick={toggle}>
+          <span id='toggle' className='close-button' onClick={toggle}>
             &times;
           </span>
         </div>
