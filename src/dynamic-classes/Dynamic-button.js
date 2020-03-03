@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styles from './dynamic-button.module.css';
 class DynamicBtn extends React.Component {
   state = {
     isHidden: false
@@ -12,7 +12,7 @@ class DynamicBtn extends React.Component {
     const { isHidden } = this.state;
     return (
       <div>
-        <p className={`${isHidden ? 'hidden' : ''}`}>lorem ipsum.</p>
+        <p className={`${isHidden ? `${styles.hidden}` : ''}`}>lorem ipsum.</p>
         <button onClick={this.toggleVisibilty}>
           {`${isHidden ? 'show' : 'hide'}`}
         </button>

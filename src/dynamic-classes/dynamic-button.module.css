@@ -1,0 +1,6 @@
+p {
+  background-color: red;
+}
+p.hidden {
+  display: none;
+}
