@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from './Modal';
+import styles from './modal.module.css';
+console.log(styles);
 class ModalContainer extends React.Component {
   state = {
     modal_title: 'warning',
@@ -8,7 +10,7 @@ class ModalContainer extends React.Component {
     isHidden: true
   };
   toggleModal = e => {
-    if (e.target.id == 'toggle') {
+    if (e.target.id == `${styles.toggle}`) {
       this.setState({ isHidden: !this.state.isHidden });
     }
   };
@@ -18,8 +20,8 @@ class ModalContainer extends React.Component {
       <div>
         <div
           onClick={this.toggleModal}
-          id='toggle'
-          className={`modal ${isHidden ? 'hidden' : ''}`}
+          id={styles.toggle}
+          className={`${styles.modal} ${isHidden ? `${styles.hidden}` : ''}`}
         >
           <Modal
             title={modal_title}
@@ -27,7 +29,7 @@ class ModalContainer extends React.Component {
             toggle={this.toggleModal}
           />
         </div>
-        <button id='toggle' onClick={this.toggleModal}>
+        <button id={styles.toggle} onClick={this.toggleModal}>
           open
         </button>
       </div>
