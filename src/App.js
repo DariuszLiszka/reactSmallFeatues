@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import DynamicBtn from './dynamic-classes/Dynamic-button';
 import RandomBgc from './random-bgc/RandomBgc';
 import ModalContainer from './basic-modal/ModalContainer';
+import DndContainer from './basic-dnd/DndConainter';
 import './App.css';
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
     <div className='App'>
       {/* <DynamicBtn /> */}
       {/* <RandomBgc /> */}
-      <ModalContainer />
+      {/* <ModalContainer /> */}
+      <DndContainer />
     </div>
   );
 }
