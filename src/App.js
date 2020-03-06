@@ -4,6 +4,7 @@ import DynamicBtn from './dynamic-classes/Dynamic-button';
 import RandomBgc from './random-bgc/RandomBgc';
 import ModalContainer from './basic-modal/ModalContainer';
 import DndContainer from './basic-dnd/DndConainter';
+import LoadingBar from './animated-loading-bar/LoadingBar';
 import './App.css';
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
       {/* <DynamicBtn /> */}
       {/* <RandomBgc /> */}
       {/* <ModalContainer /> */}
-      <DndContainer />
+      {/* <DndContainer /> */}
+      <LoadingBar />
     </div>
   );
 }
