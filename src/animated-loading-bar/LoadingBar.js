@@ -5,14 +5,16 @@ import styles from './loadingBar.module.css';
 
 function LoadingBar() {
   const props = useSpring({
-    from: { width: '0' },
+    from: { width: '0px' },
     to: { width: '100%' }
   });
 
   return (
-    <animated.div className={styles.loadingBar}>
-      <animated.div style={props}>{''} </animated.div>
-    </animated.div>
+    <div className={styles.loadingBar}>
+      <animated.div className={styles.fill} style={props}>
+        &nbsp;
+      </animated.div>
+    </div>
   );
 }
 
