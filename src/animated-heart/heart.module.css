@@ -1,0 +1,17 @@
+.heart {
+  margin: 100px;
+}
+
+.heart:hover {
+  animation: beat 1s infinite;
+}
+
+@keyframes beat {
+  0%,
+  100% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+}

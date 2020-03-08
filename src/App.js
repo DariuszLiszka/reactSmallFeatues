@@ -5,6 +5,7 @@ import RandomBgc from './random-bgc/RandomBgc';
 import ModalContainer from './basic-modal/ModalContainer';
 import DndContainer from './basic-dnd/DndConainter';
 import LoadingBar from './animated-loading-bar/LoadingBar';
+import Heart from './animated-heart/Heart';
 import './App.css';
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
       {/* <RandomBgc /> */}
       {/* <ModalContainer /> */}
       {/* <DndContainer /> */}
-      <LoadingBar />
+      {/* <LoadingBar /> */}
+      <Heart />
     </div>
   );
 }
