@@ -2,15 +2,21 @@ import React from 'react';
 import styles from './slider.module.css';
 // import Slide from './Slide';
 class Slider extends React.Component {
-  state = { index: 1 };
+  state = { index: 2 };
   images = {
     src: [
       'https://static-cdn.123rf.com/images/v5/index-thumbnail/84170952-b.jpg',
-      'https://static-cdn.123rf.com/images/v5/index-thumbnail/84170952-b.jpg',
-      'https://static-cdn.123rf.com/images/v5/index-thumbnail/84170952-b.jpg',
-      'https://static-cdn.123rf.com/images/v5/index-thumbnail/84170952-b.jpg',
-      'https://static-cdn.123rf.com/images/v5/index-thumbnail/84170952-b.jpg'
+      'https://dailyweb.pl/wp-content/uploads/2019/02/500px-1200x1200.jpg',
+      'https://cdn-dcp.avt.pl/i/images/2/6/9/_src_18269-500px.jpg',
+      'https://www.gettyimages.com/gi-resources/images/500px/983703508.jpg',
+      'https://i.wpimg.pl/730x0/m.fotoblogia.pl/karcz-6cb7d7a110be2853fe8504b0cb.jpg'
     ]
+  };
+  prevSlide = () => {
+    this.setState({ index: this.state.index - 1 });
+  };
+  nextSlide = () => {
+    this.setState({ index: this.state.index + 1 });
   };
   render() {
     return (
@@ -22,14 +28,31 @@ class Slider extends React.Component {
               src={el}
               style={
                 this.state.index == index
-                  ? { transform: 'scale(1.1)' }
-                  : { transform: 'scale(0.9' }
+                  ? {
+                      position: 'absolute',
+                      left: `${600}px`,
+                      transform: 'scale(1.5)',
+                      'z-index': '1000'
+                    }
+                  : { transform: 'scale(0.9)' }
               }
             />
           ))}
         </div>
-        <button>prev slide</button>
-        <button>next slide</button>
+        <button
+          onClick={() => {
+            this.prevSlide();
+          }}
+        >
+          prev slide
+        </button>
+        <button
+          onClick={() => {
+            this.nextSlide();
+          }}
+        >
+          next slide
+        </button>
       </div>
     );
   }
