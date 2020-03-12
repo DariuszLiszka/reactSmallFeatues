@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './slider.module.css';
 // import Slide from './Slide';
 class Slider extends React.Component {
-  state = { index: 2 };
+  state = { center: 2, index: 2, before: 1, after: 3 };
   images = {
     src: [
       'https://static-cdn.123rf.com/images/v5/index-thumbnail/84170952-b.jpg',
@@ -13,10 +13,18 @@ class Slider extends React.Component {
     ]
   };
   prevSlide = () => {
-    this.setState({ index: this.state.index - 1 });
+    this.setState({
+      index: this.state.index - 1,
+      before: this.state.before - 1,
+      after: this.state.after - 1
+    });
   };
   nextSlide = () => {
-    this.setState({ index: this.state.index + 1 });
+    this.setState({
+      index: this.state.index + 1,
+      before: this.state.before + 1,
+      after: this.state.after + 1
+    });
   };
   render() {
     return (
@@ -24,17 +32,36 @@ class Slider extends React.Component {
         <div className={styles.sliderContainer}>
           {this.images.src.map((el, index) => (
             <img
-              className={styles.slide}
+              className={`
+                ${styles.slide} ${
+                this.state.before == index
+                  ? `${styles.near} ${styles.before}`
+                  : ''
+              }
+              ${
+                this.state.after == index
+                  ? `${styles.near} ${styles.after}`
+                  : ''
+              }
+              ${
+                this.state.after == index ||
+                this.state.before == index ||
+                this.state.index == index
+                  ? ``
+                  : `${styles.none}`
+              }
+             
+              `}
               src={el}
               style={
                 this.state.index == index
                   ? {
                       position: 'absolute',
-                      left: `${600}px`,
+                      left: '600px',
                       transform: 'scale(1.5)',
                       'z-index': '1000'
                     }
-                  : { transform: 'scale(0.9)' }
+                  : { transform: 'scale(0.8)' }
               }
             />
           ))}
