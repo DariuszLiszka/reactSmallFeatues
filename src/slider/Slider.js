@@ -1,7 +1,9 @@
-import React from 'react';
-import styles from './slider.module.css';
-// import Slide from './Slide';
-class Slider extends React.Component {
+import React, { Component, Fragment } from 'react';
+import classNames from 'classnames'
+
+import styles from './slider.module.scss';
+
+class Slider extends Component {
   state = {
     index: 2,
     images: [
@@ -10,45 +12,58 @@ class Slider extends React.Component {
       'https://cdn-dcp.avt.pl/i/images/2/6/9/_src_18269-500px.jpg',
       'https://www.gettyimages.com/gi-resources/images/500px/983703508.jpg',
       'https://i.wpimg.pl/730x0/m.fotoblogia.pl/karcz-6cb7d7a110be2853fe8504b0cb.jpg'
-    ]
+    ],
+
+    animationEnd: false
   };
 
   prevSlide = () => {
     const images = [...this.state.images];
     const popped = images.pop();
+
     images.unshift(popped);
 
-    this.setState({ images });
+    this.setState({ 
+      images,
+      animationEnd: false
+    });
   };
+
   nextSlide = () => {
     const images = [...this.state.images];
     const first = images.shift();
+
     images.push(first);
 
-    this.setState({ images });
+    this.setState({
+      images,
+      animationEnd: false
+    });
   };
+
+  onAnimationEnd = () => {
+    this.setState({ animationEnd: true })
+  }
+
   render() {
-    {
-      console.log(this.images);
-    }
+    const { images, animationEnd } = this.state
+
+    const getCx = (isActive) => classNames(styles.slide, { 
+      [styles.active]: !!isActive,
+      [styles.inactive]: !isActive,
+
+      [styles.anime]: animationEnd === false && !!isActive
+    })
+
     return (
-      <div>
-        <div className={styles.sliderContainer}>
-          {this.state.images.map((el, index) => (
+      <Fragment>
+        <div className={styles.container}>
+          {images.map((el, index) => (
             <img
-              className={styles.slide}
+              className={getCx(this.state.index === index)}
+              onAnimationEnd={this.onAnimationEnd}
               src={el}
-              style={
-                this.state.index == index
-                  ? {
-                      position: 'absolute',
-                      left: `${600}px`,
-                      transform: 'scale(1.5)',
-                      'z-index': '1000',
-                      transition: ' all 2s'
-                    }
-                  : { filter: 'blur(2px)' }
-              }
+              alt=""
             />
           ))}
         </div>
@@ -58,17 +73,17 @@ class Slider extends React.Component {
               this.prevSlide();
             }}
           >
-            prev slide
+            Previous
           </button>
           <button
             onClick={() => {
               this.nextSlide();
             }}
           >
-            next slide
+            Next
           </button>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
