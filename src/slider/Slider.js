@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import classNames from 'classnames'
 
 import styles from './slider.module.scss';
 
-class Slider extends React.Component {
+class Slider extends Component {
   state = {
     index: 2,
     images: [
@@ -20,6 +20,7 @@ class Slider extends React.Component {
   prevSlide = () => {
     const images = [...this.state.images];
     const popped = images.pop();
+
     images.unshift(popped);
 
     this.setState({ 
@@ -31,6 +32,7 @@ class Slider extends React.Component {
   nextSlide = () => {
     const images = [...this.state.images];
     const first = images.shift();
+
     images.push(first);
 
     this.setState({
@@ -54,8 +56,8 @@ class Slider extends React.Component {
     })
 
     return (
-      <div>
-        <div className={styles.sliderContainer}>
+      <Fragment>
+        <div className={styles.container}>
           {images.map((el, index) => (
             <img
               className={getCx(this.state.index === index)}
@@ -71,17 +73,17 @@ class Slider extends React.Component {
               this.prevSlide();
             }}
           >
-            prev slide
+            Previous
           </button>
           <button
             onClick={() => {
               this.nextSlide();
             }}
           >
-            next slide
+            Next
           </button>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
