@@ -1,40 +1,58 @@
 .container {
-  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  .sliderContainer {
+    display: flex;
 
-  .slide {
-    height: 300px;
-    border: solid 6px white;
-    border-radius: 2px;
-    margin: 25px;
-  
-    transition: all 1s;
-  
-    &.active {
-      position: absolute;
-      left: 600px;
-      z-index: 1000;
-  
-      transform: scale(1.5);
-    }
-  
-    &.inactive {
-      filter: blur(2px)
-    }
-  
-    &.anime {
-      animation: bigger 1s 1;
+    .slide {
+      height: 200px;
+      width: 200px;
+      border: solid 6px white;
+      border-radius: 2px;
+      margin: 25px;
+
+      transition: all 1s;
+
+      &.active {
+        position: absolute;
+        left: 390px;
+        z-index: 1000;
+
+        transform: scale(1.5);
+      }
+
+      &.inactive {
+        filter: blur(2px);
+      }
+
+      &.anime {
+        animation: bigger 1s 1;
+      }
     }
   }
 }
-
 .buttons {
-  position: absolute;
-  left: 300px;
+  div {
+    width: 25px;
+    height: 25px;
 
-  button {
-    width: 75px;
-    padding: 5px;
-    margin: 0px 5px;
+    box-shadow: -4px -4px 0 rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+  }
+  .previous {
+    position: absolute;
+    left: 0px;
+    top: 115px;
+    transform: rotate(-45deg);
+  }
+  .next {
+    position: absolute;
+    right: 0px;
+    top: 115px;
+    transform: rotate(-225deg);
   }
 }
 
@@ -48,5 +66,5 @@
 }
 
 body {
-  background-color: red;
+  background-color: #001f3f;
 }

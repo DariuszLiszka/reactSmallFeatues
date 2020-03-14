@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import classNames from 'classnames'
+import classNames from 'classnames';
 
 import styles from './slider.module.scss';
 
@@ -23,7 +23,7 @@ class Slider extends Component {
 
     images.unshift(popped);
 
-    this.setState({ 
+    this.setState({
       images,
       animationEnd: false
     });
@@ -42,46 +42,50 @@ class Slider extends Component {
   };
 
   onAnimationEnd = () => {
-    this.setState({ animationEnd: true })
+    this.setState({ animationEnd: true });
+  };
+  componentDidMount() {
+    setInterval(this.nextSlide, 4000);
   }
 
   render() {
-    const { images, animationEnd } = this.state
+    const { images, animationEnd } = this.state;
 
-    const getCx = (isActive) => classNames(styles.slide, { 
-      [styles.active]: !!isActive,
-      [styles.inactive]: !isActive,
+    const getCx = isActive =>
+      classNames(styles.slide, {
+        [styles.active]: !!isActive,
+        [styles.inactive]: !isActive,
 
-      [styles.anime]: animationEnd === false && !!isActive
-    })
+        [styles.anime]: animationEnd === false && !!isActive
+      });
 
     return (
       <Fragment>
         <div className={styles.container}>
-          {images.map((el, index) => (
-            <img
-              className={getCx(this.state.index === index)}
-              onAnimationEnd={this.onAnimationEnd}
-              src={el}
-              alt=""
-            />
-          ))}
-        </div>
-        <div className={styles.buttons}>
-          <button
-            onClick={() => {
-              this.prevSlide();
-            }}
-          >
-            Previous
-          </button>
-          <button
-            onClick={() => {
-              this.nextSlide();
-            }}
-          >
-            Next
-          </button>
+          <div className={styles.sliderContainer}>
+            {images.map((el, index) => (
+              <img
+                className={getCx(this.state.index === index)}
+                onAnimationEnd={this.onAnimationEnd}
+                src={el}
+                alt=''
+              />
+            ))}
+          </div>
+          <div className={styles.buttons}>
+            <div
+              className={styles.previous}
+              onClick={() => {
+                this.prevSlide();
+              }}
+            ></div>
+            <div
+              className={styles.next}
+              onClick={() => {
+                this.nextSlide();
+              }}
+            ></div>
+          </div>
         </div>
       </Fragment>
     );
