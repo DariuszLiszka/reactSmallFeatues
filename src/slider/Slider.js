@@ -59,6 +59,11 @@ class Slider extends Component {
         [styles.anime]: animationEnd === false && !!isActive
       });
 
+    const disableButtons = animationEnd =>
+      classNames(styles.buttons, {
+        [styles.disabledButtons]: !!animationEnd
+      });
+
     return (
       <Fragment>
         <div className={styles.container}>
@@ -72,7 +77,7 @@ class Slider extends Component {
               />
             ))}
           </div>
-          <div className={styles.buttons}>
+          <div className={disableButtons(true)}>
             <div
               className={styles.previous}
               onClick={() => {
