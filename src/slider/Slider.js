@@ -61,7 +61,7 @@ class Slider extends Component {
 
     const disableButtons = animationEnd =>
       classNames(styles.buttons, {
-        [styles.disabledButtons]: !!animationEnd
+        [styles.disabledButtons]: animationEnd === false
       });
 
     return (
@@ -77,7 +77,7 @@ class Slider extends Component {
               />
             ))}
           </div>
-          <div className={disableButtons(true)}>
+          <div className={disableButtons(animationEnd)}>
             <div
               className={styles.previous}
               onClick={() => {
